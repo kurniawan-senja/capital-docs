@@ -1,6 +1,7 @@
 ---
 id: system-overview
 title: 1. System Overview
+slug: /
 ---
 
 # 1. System Overview
