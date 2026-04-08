@@ -24,6 +24,13 @@ This workflow runs per `render_id`. Multiple renders can be triggered simultaneo
 | **Retry logic** | Max 3 retries — requeue to `READY` then `FATAL` |
 | **Notifications** | Slack webhook on DONE and FATAL |
 
+### Workflow 2 — Full Canvas
+
+![Workflow 2 Full Canvas](/img/screenshots/figure-007.png)
+
+### System Architecture — n8n Canvas Overview - Render Automation V2
+![Render Automation V2](/img/screenshots/figure-001.png)
+
 :::info Screencast Workflow 2 Full Demo
 Set a Queue row render = READY, watch n8n trigger, AfterFX render, file upload to Drive, and status update to FINISHED. Duration: 5-8 min.
 Link: https://streamable.com/1wj5fa
@@ -68,6 +75,10 @@ Link: https://streamable.com/1wj5fa
 
 Reconstructs the full 12-token composition name from Queue row data and builds the nexrender job object with template source, composition name, output module, and post-render copy action.
 
+### Parse Job Format — Code Panel
+
+![Parse Job Format](/img/screenshots/figure-008.png)
+
 ### 3.4.2 Run Render
 
 Launches AfterFX.exe in script mode passing three global variables: `templatePath`, `compName`, and `outputPath`. AfterFX executes `Render.jsx` which opens the project, finds the comp, renders, saves, and quits.
@@ -75,6 +86,10 @@ Launches AfterFX.exe in script mode passing three global variables: `templatePat
 ```bash
 AfterFX.exe -s "$.global.templatePath='...'; $.global.compName='...'; $.global.outputPath='...'; $.evalFile('Render.jsx');"
 ```
+
+### Run Render — Command Field
+
+![Run Render](/img/screenshots/figure-009.png)
 
 :::warning
 AfterFX.exe must exit with code 0 for the workflow to continue to upload. A non-zero exit code routes to Retry Counter.
@@ -90,6 +105,10 @@ After Run Render, `exitCode` is checked. If not `0`, Retry Counter reads `retry_
 | `exitCode != 0, retry_count < 3` | Set render = READY, increment retry_count |
 | `exitCode != 0, retry_count = 3` | Set render = FATAL, log, send Slack alert |
 
+### Retry Logic — If Render OK + Retry Counter + If Requeue or Fatal
+
+![Retry Logic](/img/screenshots/figure-010.png)
+
 ### 3.4.4 Render Timestamps
 
 The workflow captures render start and end timestamps. Duration in seconds is calculated and written to the Queue row for render time tracking.
@@ -99,6 +118,18 @@ The workflow captures render start and end timestamps. Duration in seconds is ca
 | **Render Start Timestamp** | `render_start` | `YYYY-MM-DD HH:MM:SS UTC` |
 | **Render End Timestamp** | `render_end` + `duration_sec` | Same format + integer seconds |
 
+### Render Start Timestamp — Code Panel
+
+![Render Start Timestamp](/img/screenshots/figure-011.png)
+
 ### 3.4.5 Upload File + Update Job Link
 
 After render, the `.mp4` is read from disk and uploaded to the designated Google Drive folder. The returned `webContentLink` is stored in `file_link`, and render status is updated to `FINISHED`.
+
+### Upload File — Google Drive Settings
+
+![Upload File](/img/screenshots/figure-012.png)
+
+### Update Job Link — Column Mapping
+
+![Update Job Link](/img/screenshots/figure-013.png)

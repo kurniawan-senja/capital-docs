@@ -24,8 +24,7 @@ Workflow 1 must complete successfully before Workflow 2 can begin. The Queue tab
 | **Success status** | `FINISHED` |
 | **Failure status** | `FAILED` |
 
-### System Architecture — n8n Canvas Overview
-
+### System Architecture — n8n Canvas Overview - Automate Export Layers V2
 ![Automate Export Layers V2](/img/screenshots/figure-000.png)
 
 :::info Screencast Workflow 1 Full Demo
@@ -79,6 +78,10 @@ Polls the Read_template sheet every minute watching the status column. When any 
 | **Poll interval** | Every minute |
 | **Column to watch**| `status` |
 
+### Read Job Queue — Node Settings
+
+![Read Job Queue](/img/screenshots/figure-001.png)
+
 ### 2.4.2 Normalize Path
 
 Converts Windows backslashes to forward slashes in both `template_path` and `rw_path`, ensuring compatibility across all Execute Command nodes.
@@ -87,6 +90,10 @@ Converts Windows backslashes to forward slashes in both `template_path` and `rw_
 template_path = $('Loop Update').first().json.template_path.replace(/\\/g, '/');
 rw_path = $('Loop Update').first().json.rw_path.replace(/\\/g, '/');
 ```
+
+### Normalize Path — Code Panel
+
+![Normalize Path](/img/screenshots/figure-002.png)
 
 ### 2.4.3 Execute RW Update
 
@@ -100,9 +107,17 @@ AfterFX.exe -s "$.global.templatePath='...'; $.global.rwUpdatePath='...'; $.eval
 AfterFX.exe runs synchronously. The Wait node (10 min) after this step provides buffer time for AE to complete and save.
 :::
 
+### Execute RW Update — Command Field
+
+![Execute RW Update](/img/screenshots/figure-003.png)
+
 ### 2.4.4 Filter Only Regulatories
 
 Filters compositions to include only those starting with valid regulatory prefix codes: `CRP, GOL, GAS, OIL, IND, FOX, PGE, COM, EQU, BND, OTH`.
+
+### Filter Only Regulatories — Code Panel
+
+![Filter Only Regulatories](/img/screenshots/figure-004.png)
 
 ### 2.4.5 Index Compositions
 
@@ -123,6 +138,14 @@ Parses the 12-token composition name into structured JSON fields. Each token is 
 | 11 | source | CT |
 | 12 | acpm | 0.007 |
 
+### Index Compositions — Code Panel
+
+![Index Compositions](/img/screenshots/figure-005.png)
+
 ### 2.4.6 Error Handling — Update Failed and Log FAILED
 
 When the template file is not found on disk (If Exist? FALSE branch), the workflow routes to Update Failed which sets status = FAILED and records the error step and message. Log FAILED appends the event to the Logs tab.
+
+### Error Path — Update Failed + Log FAILED
+
+![Error Path](/img/screenshots/figure-006.png)

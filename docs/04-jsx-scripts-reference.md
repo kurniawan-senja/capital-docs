@@ -34,6 +34,10 @@ Replaces the old RW composition folder with a newly imported RW `.aep` file. Mat
 | 10. Bake text | Converts all text expressions to static values via `setValue()` |
 | 11. Save + quit | Saves project to original path and calls `app.quit()` |
 
+### Auto_Update_RW.jsx — Script in Text Editor
+
+![Auto Update RW Script](/img/screenshots/figure-014.png)
+
 **Log output:** `C:/ae-automated/exports/rw_update_{template_slug}.txt`
 
 ## 4.2 Export_Comp.jsx
@@ -48,9 +52,17 @@ Scans all compositions in the AE project, extracts metadata for comps matching t
 In Workflow 1, this script is called from `C:/ae-automated/test_src/Export Comp.jsx` — not the `/scripts/` folder. Verify this path matches your actual file location before deploying.
 :::
 
+### Export_Comp.jsx — Script in Text Editor
+
+![Export Comp Script](/img/screenshots/figure-015.png)
+
 **Output files:**
 - Stable: `C:/ae-automated/exports/project_data.json`
 - Cache: `C:/ae-automated/exports/cache/project_data_{template_slug}.json`
+
+### project_data.json — Sample Output
+
+![Project Data JSON](/img/screenshots/figure-016.png)
 
 | JSON Field | Description |
 | --- | --- |
@@ -71,6 +83,10 @@ Opens the specified AE project, finds the target composition by name, clears the
 | `$.global.templatePath` | Full path to the `.aep` project file |
 | `$.global.compName` | Exact composition name to render (12-token format) |
 | `$.global.outputPath` | Full output path including filename and `.mp4` extension |
+
+### Render.jsx — Script in Text Editor
+
+![Render.jsx Script](/img/screenshots/figure-017.png)
 
 :::info
 The script uses the output module already configured in the AE project. Ensure the project default render settings are correct before running.

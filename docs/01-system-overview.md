@@ -67,6 +67,10 @@ The end-to-end automation follows this sequence:
 | `C:/ae-automated/renders/temp_jobs/` | Temporary nexrender job JSON files |
 | `C:/ae-automated/renders/render_history/` | Render job history folder |
 
+### System Architecture — n8n Canvas Overview
+![Automate Export Layers V2](/img/screenshots/figure-000.png)
+![Render Automation V2](/img/screenshots/figure-001.png)
+
 :::info
 **Google Sheet ID:** 1BNGKNamOkjNvnR7DyDiqS0G3-qWzVdV6BlyzJ_RrLFk
 **Google Drive Folder ID:** 1scgJBlL50Iaz19djbFC257dOghgpAzNh

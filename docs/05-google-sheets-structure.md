@@ -15,6 +15,10 @@ The Layer Control sheet is the central control plane. All job orchestration, sta
 
 The job queue. One row per job. Operator creates rows here to trigger automation.
 
+### Google Sheets — Read_template Tab
+
+![Google Sheets Read Template Tab](/img/screenshots/figure-018.png)
+
 | Column | Type | Description |
 | --- | --- | --- |
 | `job_id` | String | Unique identifier for the job (e.g. `job_001`) |
@@ -27,6 +31,10 @@ The job queue. One row per job. Operator creates rows here to trigger automation
 ## 5.2 Queue Tab (gid=956294243)
 
 The render queue. One row per composition per job. Populated automatically by Workflow 1.
+
+### Google Sheets — Queue Tab
+
+![Google Sheets Queue Tab](/img/screenshots/figure-019.png)
 
 | Column | Type | Description |
 | --- | --- | --- |
@@ -55,6 +63,10 @@ The render queue. One row per composition per job. Populated automatically by Wo
 ## 5.3 Logs Tab (gid=395354427)
 
 Append-only event log. Every status transition and error is recorded here.
+
+### Google Sheets — Log Tab
+
+![Google Sheets Log Tab](/img/screenshots/figure-020.png)
 
 | Column | Type | Description |
 | --- | --- | --- |
