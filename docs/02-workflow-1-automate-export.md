@@ -24,6 +24,8 @@ Workflow 1 must complete successfully before Workflow 2 can begin. The Queue tab
 | **Success status** | `FINISHED` |
 | **Failure status** | `FAILED` |
 
+### System Architecture — n8n Canvas Overview
+
 ![Automate Export Layers V2](/img/screenshots/figure-000.png)
 
 :::info Screencast Workflow 1 Full Demo
