@@ -80,7 +80,7 @@ Polls the Read_template sheet every minute watching the status column. When any 
 
 ### Read Job Queue — Node Settings
 
-![Read Job Queue](/img/screenshots/figure-001.png)
+![Read Job Queue](/img/screenshots/figure-003.png)
 
 ### 2.4.2 Normalize Path
 
@@ -93,7 +93,7 @@ rw_path = $('Loop Update').first().json.rw_path.replace(/\\/g, '/');
 
 ### Normalize Path — Code Panel
 
-![Normalize Path](/img/screenshots/figure-002.png)
+![Normalize Path](/img/screenshots/figure-004.png)
 
 ### 2.4.3 Execute RW Update
 
@@ -109,7 +109,7 @@ AfterFX.exe runs synchronously. The Wait node (10 min) after this step provides 
 
 ### Execute RW Update — Command Field
 
-![Execute RW Update](/img/screenshots/figure-003.png)
+![Execute RW Update](/img/screenshots/figure-005.png)
 
 ### 2.4.4 Filter Only Regulatories
 
@@ -117,7 +117,7 @@ Filters compositions to include only those starting with valid regulatory prefix
 
 ### Filter Only Regulatories — Code Panel
 
-![Filter Only Regulatories](/img/screenshots/figure-004.png)
+![Filter Only Regulatories](/img/screenshots/figure-006.png)
 
 ### 2.4.5 Index Compositions
 
@@ -140,7 +140,7 @@ Parses the 12-token composition name into structured JSON fields. Each token is 
 
 ### Index Compositions — Code Panel
 
-![Index Compositions](/img/screenshots/figure-005.png)
+![Index Compositions](/img/screenshots/figure-007.png)
 
 ### 2.4.6 Error Handling — Update Failed and Log FAILED
 
@@ -148,4 +148,4 @@ When the template file is not found on disk (If Exist? FALSE branch), the workfl
 
 ### Error Path — Update Failed + Log FAILED
 
-![Error Path](/img/screenshots/figure-006.png)
+![Error Path](/img/screenshots/figure-008.png)

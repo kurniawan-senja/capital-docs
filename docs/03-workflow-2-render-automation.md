@@ -24,12 +24,9 @@ This workflow runs per `render_id`. Multiple renders can be triggered simultaneo
 | **Retry logic** | Max 3 retries — requeue to `READY` then `FATAL` |
 | **Notifications** | Slack webhook on DONE and FATAL |
 
-### Workflow 2 — Full Canvas
-
-![Workflow 2 Full Canvas](/img/screenshots/figure-007.png)
-
 ### System Architecture — n8n Canvas Overview - Render Automation V2
-![Render Automation V2](/img/screenshots/figure-001.png)
+
+![Workflow 2 Full Canvas](/img/screenshots/figure-001.png)
 
 :::info Screencast Workflow 2 Full Demo
 Set a Queue row render = READY, watch n8n trigger, AfterFX render, file upload to Drive, and status update to FINISHED. Duration: 5-8 min.
@@ -77,7 +74,7 @@ Reconstructs the full 12-token composition name from Queue row data and builds t
 
 ### Parse Job Format — Code Panel
 
-![Parse Job Format](/img/screenshots/figure-008.png)
+![Parse Job Format](/img/screenshots/figure-010.png)
 
 ### 3.4.2 Run Render
 
@@ -89,7 +86,7 @@ AfterFX.exe -s "$.global.templatePath='...'; $.global.compName='...'; $.global.o
 
 ### Run Render — Command Field
 
-![Run Render](/img/screenshots/figure-009.png)
+![Run Render](/img/screenshots/figure-011.png)
 
 :::warning
 AfterFX.exe must exit with code 0 for the workflow to continue to upload. A non-zero exit code routes to Retry Counter.
@@ -107,7 +104,7 @@ After Run Render, `exitCode` is checked. If not `0`, Retry Counter reads `retry_
 
 ### Retry Logic — If Render OK + Retry Counter + If Requeue or Fatal
 
-![Retry Logic](/img/screenshots/figure-010.png)
+![Retry Logic](/img/screenshots/figure-023)
 
 ### 3.4.4 Render Timestamps
 
@@ -120,7 +117,7 @@ The workflow captures render start and end timestamps. Duration in seconds is ca
 
 ### Render Start Timestamp — Code Panel
 
-![Render Start Timestamp](/img/screenshots/figure-011.png)
+![Render Start Timestamp](/img/screenshots/figure-012.png)
 
 ### 3.4.5 Upload File + Update Job Link
 
@@ -128,8 +125,8 @@ After render, the `.mp4` is read from disk and uploaded to the designated Google
 
 ### Upload File — Google Drive Settings
 
-![Upload File](/img/screenshots/figure-012.png)
+![Upload File](/img/screenshots/figure-013.png)
 
 ### Update Job Link — Column Mapping
 
-![Update Job Link](/img/screenshots/figure-013.png)
+![Update Job Link](/img/screenshots/figure-014.png)

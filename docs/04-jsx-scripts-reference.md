@@ -36,7 +36,7 @@ Replaces the old RW composition folder with a newly imported RW `.aep` file. Mat
 
 ### Auto_Update_RW.jsx — Script in Text Editor
 
-![Auto Update RW Script](/img/screenshots/figure-014.png)
+![Auto Update RW Script](/img/screenshots/figure-015.png)
 
 **Log output:** `C:/ae-automated/exports/rw_update_{template_slug}.txt`
 
@@ -54,7 +54,7 @@ In Workflow 1, this script is called from `C:/ae-automated/test_src/Export Comp.
 
 ### Export_Comp.jsx — Script in Text Editor
 
-![Export Comp Script](/img/screenshots/figure-015.png)
+![Export Comp Script](/img/screenshots/figure-016.png)
 
 **Output files:**
 - Stable: `C:/ae-automated/exports/project_data.json`
@@ -62,7 +62,7 @@ In Workflow 1, this script is called from `C:/ae-automated/test_src/Export Comp.
 
 ### project_data.json — Sample Output
 
-![Project Data JSON](/img/screenshots/figure-016.png)
+![Project Data JSON](/img/screenshots/figure-017.png)
 
 | JSON Field | Description |
 | --- | --- |
@@ -86,7 +86,7 @@ Opens the specified AE project, finds the target composition by name, clears the
 
 ### Render.jsx — Script in Text Editor
 
-![Render.jsx Script](/img/screenshots/figure-017.png)
+![Render.jsx Script](/img/screenshots/figure-018.png)
 
 :::info
 The script uses the output module already configured in the AE project. Ensure the project default render settings are correct before running.

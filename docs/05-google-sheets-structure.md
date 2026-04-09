@@ -17,7 +17,7 @@ The job queue. One row per job. Operator creates rows here to trigger automation
 
 ### Google Sheets — Read_template Tab
 
-![Google Sheets Read Template Tab](/img/screenshots/figure-018.png)
+![Google Sheets Read Template Tab](/img/screenshots/figure-019.png)
 
 | Column | Type | Description |
 | --- | --- | --- |
@@ -34,7 +34,7 @@ The render queue. One row per composition per job. Populated automatically by Wo
 
 ### Google Sheets — Queue Tab
 
-![Google Sheets Queue Tab](/img/screenshots/figure-019.png)
+![Google Sheets Queue Tab](/img/screenshots/figure-020.png)
 
 | Column | Type | Description |
 | --- | --- | --- |
@@ -66,7 +66,7 @@ Append-only event log. Every status transition and error is recorded here.
 
 ### Google Sheets — Log Tab
 
-![Google Sheets Log Tab](/img/screenshots/figure-020.png)
+![Google Sheets Log Tab](/img/screenshots/figure-021.png)
 
 | Column | Type | Description |
 | --- | --- | --- |
