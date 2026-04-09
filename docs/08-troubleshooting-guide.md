@@ -37,3 +37,7 @@ Each JSX script writes a log file to `C:/ae-automated/exports/` on every run. Al
 | `render_{template_slug}.txt` | `Render.jsx` |
 | `rw_update_{template_slug}.txt` | `Auto_Update_RW.jsx` |
 | `log_{template_slug}.txt` | `Export_Comp.jsx` |
+
+### Log File — Sample Render Log
+
+![Sample Render Log](/img/screenshots/figure-022.png)
