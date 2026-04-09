@@ -104,7 +104,7 @@ After Run Render, `exitCode` is checked. If not `0`, Retry Counter reads `retry_
 
 ### Retry Logic — If Render OK + Retry Counter + If Requeue or Fatal
 
-![Retry Logic](/img/screenshots/figure-023)
+![Retry Logic](/img/screenshots/figure-023.png)
 
 ### 3.4.4 Render Timestamps
 
