@@ -64,6 +64,10 @@ Link: https://streamable.com/9act30
 | **Update Failed** | Google Sheets | Sets status = FAILED with error details | Confirmation |
 | **Log FAILED** | Google Sheets | Appends failure event to Logs tab | Confirmation |
 | **End Run** | Set | Terminal node for non-READY rows | No output |
+| **Build Error Payload** | Code | Formats structured message for logical failure alert | JSON payload |
+| **Alert Systems (Slack/TG/Mail/Discord)** | HTTP / Mail | Dispatches failure alerts to multiple channels | HTTP 200 |
+| **Error Trigger** | Error Trigger | Global listener catching unhandled n8n failures | Exception data |
+| **Build System Error Payload** | Code | Formats structured multi-channel alert for unhandled nodes | JSON payload |
 
 ## 2.4 Node Detail — Key Nodes
 
@@ -142,10 +146,22 @@ Parses the 12-token composition name into structured JSON fields. Each token is 
 
 ![Index Compositions](/img/screenshots/figure-007.png)
 
-### 2.4.6 Error Handling — Update Failed and Log FAILED
+### 2.4.6 Error Handling & Notifications
 
 When the template file is not found on disk (If Exist? FALSE branch), the workflow routes to Update Failed which sets status = FAILED and records the error step and message. Log FAILED appends the event to the Logs tab.
+
+Once the failure is logged, **Build Error Payload** constructs a formatted message containing `job_id`, `eror_step`, and `eror_message`. This alert is then broadcast to the team across four channels simultaneously:
+- **Slack** (via Webhook)
+- **Telegram** (via Bot API)
+- **Gmail** (via SMTP routing)
+- **Discord** (via Webhook)
 
 ### Error Path — Update Failed + Log FAILED
 
 ![Error Path](/img/screenshots/figure-008.png)
+
+### 2.4.7 Global System Error Handling
+The pipeline integrates a global **Error Trigger** node that acts as a safety net. If any node in the workflow fails unexpectedly (n8n exception, timeout, memory limit), this node automatically fires.
+
+1. **Build System Error Payload** extracts `$json.execution.error.message` and the `$json.execution.lastNodeExecuted`.
+2. A critical **`SYSTEM ERROR`** alert is dispatched out to Slack, Telegram, and Gmail highlighting the exact node that crashed, safeguarding against silent failures.

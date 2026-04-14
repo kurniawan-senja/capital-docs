@@ -62,9 +62,11 @@ Link: https://streamable.com/1wj5fa
 | **Requeue to READY** | Google Sheets | Sets render = READY + increments retry_count | Confirmation |
 | **Update Render FATAL** | Google Sheets | Sets render = FATAL + error_message | Confirmation |
 | **Log Render FATAL** | Google Sheets | Appends RENDER_FATAL to Logs tab | Confirmation |
-| **Build Fatal Alert Payload** | Code | Builds Slack alert message for FATAL | Slack payload JSON |
-| **Notify Render FATAL** | HTTP Request | POSTs to Slack webhook on FATAL | HTTP 200 |
+| **Build Fatal Alert Payload** | Code | Builds multi-channel alert message for FATAL | JSON payload |
+| **Alert Systems (Slack/TG/Mail)** | HTTP / Mail | POSTs to Slack, Telegram, and Gmail webhooks on FATAL | HTTP 200 |
 | **End Update** | Set | Terminal node for non-READY rows | No output |
+| **Error Trigger** | Error Trigger | Global listener catching unhandled n8n failures | Exception data |
+| **Build System Error Payload** | Code | Formats structured multi-channel alert for unhandled nodes | JSON payload |
 
 ## 3.4 Node Detail — Key Nodes
 
@@ -94,7 +96,9 @@ AfterFX.exe must exit with code 0 for the workflow to continue to upload. A non-
 
 ### 3.4.3 If Render OK + Retry Counter
 
-After Run Render, `exitCode` is checked. If not `0`, Retry Counter reads `retry_count`. Below 3: requeues with `READY` and increments counter. At 3: marks `FATAL` and sends Slack alert.
+After Run Render, `exitCode` is checked. If not `0`, Retry Counter reads `retry_count`. Below 3: requeues with `READY` and increments counter. At 3: marks `FATAL` and builds the **Fatal Alert Payload**.
+
+Instead of a single Slack notification, the pipeline now fans out a comprehensive FATAL alert (containing the explicit error `$json.message`) concurrently to **Slack**, **Telegram**, and **Gmail**, allowing the operational team to respond rapidly to broken render chains.
 
 | Scenario | Action |
 | --- | --- |
@@ -130,3 +134,8 @@ After render, the `.mp4` is read from disk and uploaded to the designated Google
 ### Update Job Link — Column Mapping
 
 ![Update Job Link](/img/screenshots/figure-014.png)
+
+### 3.4.6 Global System Error Handling
+Identical to Workflow 1, Workflow 2 is protected by an `Error Trigger` node. If a node fails outside of logical branching (e.g., Google Drive API timeout, n8n internal fault), the system triggers a **`SYSTEM ERROR`**.
+
+The `Build System Error Payload` node parses the failing node (`$json.execution.lastNodeExecuted`) and the raw stack trace (`$json.execution.error.message`), pinging the emergency ops channel via **Slack**, **Telegram**, and **Gmail**.
