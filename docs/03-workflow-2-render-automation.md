@@ -149,16 +149,16 @@ The following notification nodes were added to handle various states of renderin
 
 ### Success Notification Branch
 
-![Success Notification Branch](/img/screenshots/figure-027.png)
+![Success Notification Branch](/img/screenshots/figure-024.png)
 
 ### Error / Retry Notification Branch
 
-![Error Notification Branch](/img/screenshots/figure-028.png)
+![Error Notification Branch](/img/screenshots/figure-025.png)
 
 ### Fatal Notification Branch
 
-![Fatal Notification Branch](/img/screenshots/figure-029.png)
+![Fatal Notification Branch](/img/screenshots/figure-027.png)
 
 ### Error Trigger Area
 
-![Error Trigger Area](/img/screenshots/figure-030.png)
+![Error Trigger Area](/img/screenshots/figure-026.png)
