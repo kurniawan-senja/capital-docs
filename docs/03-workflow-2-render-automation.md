@@ -26,7 +26,7 @@ This workflow runs per `render_id`. Multiple renders can be triggered simultaneo
 
 ### System Architecture — n8n Canvas Overview - Render Automation V2
 
-![Workflow 2 Full Canvas](/img/screenshots/figure-001.png)
+![Workflow 2 Full Canvas (with Notification Nodes)](/img/screenshots/figure-001.png)
 
 :::info Screencast Workflow 2 Full Demo
 Set a Queue row render = READY, watch n8n trigger, AfterFX render, file upload to Drive, and status update to FINISHED. Duration: 5-8 min.
@@ -135,7 +135,30 @@ After render, the `.mp4` is read from disk and uploaded to the designated Google
 
 ![Update Job Link](/img/screenshots/figure-014.png)
 
-### 3.4.6 Global System Error Handling
-Identical to Workflow 1, Workflow 2 is protected by an `Error Trigger` node. If a node fails outside of logical branching (e.g., Google Drive API timeout, n8n internal fault), the system triggers a **`SYSTEM ERROR`**.
+### 3.4.6 Notification Nodes
 
-The `Build System Error Payload` node parses the failing node (`$json.execution.lastNodeExecuted`) and the raw stack trace (`$json.execution.error.message`), pinging the emergency ops channel via **Slack**, **Telegram**, and **Gmail**.
+The following notification nodes were added to handle various states of rendering events (success, errors, fatal limits, and system crashes) automatically:
+
+- **Build Success Payload** (Set node) — triggered after `Log Render FINISHED`, sends `render_id`, `job_id`, `file_link`, and `duration_sec`.
+- **Build Error Payload** (Set node) — triggered after `Requeue to READY`, sends `render_id`, `retry_count`, and `error_message`.
+- **Build Fatal Payload** (Set node) — triggered after `Log Render FATAL`, sends `render_id`, `job_id`, and reason (`max retry reached`).
+- **Slack, Telegram, Gmail, Discord** — individual routing nodes configured for each payload type (Success, Error, Fatal).
+- **Error Trigger node** — global listener for unexpected application failures.
+- **Build System Error Payload** (Set node) — constructs the exact system crash output.
+- **Slack, Telegram, Gmail, Discord** — individual routing nodes for the System Error payload.
+
+### Success Notification Branch
+
+![Success Notification Branch](/img/screenshots/figure-027.png)
+
+### Error / Retry Notification Branch
+
+![Error Notification Branch](/img/screenshots/figure-028.png)
+
+### Fatal Notification Branch
+
+![Fatal Notification Branch](/img/screenshots/figure-029.png)
+
+### Error Trigger Area
+
+![Error Trigger Area](/img/screenshots/figure-030.png)

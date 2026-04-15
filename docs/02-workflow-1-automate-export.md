@@ -25,7 +25,8 @@ Workflow 1 must complete successfully before Workflow 2 can begin. The Queue tab
 | **Failure status** | `FAILED` |
 
 ### System Architecture — n8n Canvas Overview - Automate Export Layers V2
-![Automate Export Layers V2](/img/screenshots/figure-000.png)
+
+![Automate Export Layers V2 (with Notification Nodes)](/img/screenshots/figure-000.png)
 
 :::info Screencast Workflow 1 Full Demo
 Set a job to READY in Google Sheets, watch n8n trigger, validate files, update RW, export comps, and populate the Queue tab. Duration: 3-5 min.
@@ -160,8 +161,26 @@ Once the failure is logged, **Build Error Payload** constructs a formatted messa
 
 ![Error Path](/img/screenshots/figure-008.png)
 
-### 2.4.7 Global System Error Handling
-The pipeline integrates a global **Error Trigger** node that acts as a safety net. If any node in the workflow fails unexpectedly (n8n exception, timeout, memory limit), this node automatically fires.
+### 2.4.7 Notification Nodes
 
-1. **Build System Error Payload** extracts `$json.execution.error.message` and the `$json.execution.lastNodeExecuted`.
-2. A critical **`SYSTEM ERROR`** alert is dispatched out to Slack, Telegram, and Gmail highlighting the exact node that crashed, safeguarding against silent failures.
+The following notification nodes were appended to the end of the existing automation logic to handle success, failure, and system-level exceptions without modifying the core business logic.
+
+- **Build Success Payload** (Set node) — triggered after `Log FINISHED`, sends `job_id`, status, and timestamp.
+- **Build Error Payload** (Set node) — triggered after `Log FAILED`, sends `job_id`, `step_failed`, and `error_message`.
+- **Slack, Telegram, Gmail, Discord** — individual nodes routing the Success payload.
+- **Slack, Telegram, Gmail, Discord** — individual nodes routing the Error payload.
+- **Error Trigger node** — catches global, system-level crashes (unhandled n8n application exceptions) not covered by business logic.
+- **Build System Error Payload** (Set node) — formats the system error message from the Error Trigger.
+- **Slack, Telegram, Gmail, Discord** — individual nodes routing the System Error payload.
+
+### Success Notification Branch
+
+![Success Notification Branch](/img/screenshots/figure-024.png)
+
+### Error Notification Branch
+
+![Error Notification Branch](/img/screenshots/figure-025.png)
+
+### Error Trigger Area
+
+![Error Trigger Area](/img/screenshots/figure-026.png)

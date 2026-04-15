@@ -78,15 +78,27 @@ In Workflow 1, this script is called from `C:/ae-automated/test_src/Export Comp.
 
 Opens the specified AE project, finds the target composition by name, clears the render queue, adds the comp with the specified output path, renders, saves, and quits. All operations are logged.
 
+A delete check was added before the render starts. If the output file already exists on disk, the script automatically deletes it before rendering. This prevents the After Effects overwrite popup from appearing during automation, which would cause the workflow to hang indefinitely waiting for user input.
+
 | Parameter | Description |
 | --- | --- |
 | `$.global.templatePath` | Full path to the `.aep` project file |
 | `$.global.compName` | Exact composition name to render (12-token format) |
 | `$.global.outputPath` | Full output path including filename and `.mp4` extension |
 
+| Step | Description |
+| --- | --- |
+| 1. Open project | Opens the specified AE project |
+| 2. Find composition | Locates the target composition by `compName` |
+| 3. Clear render queue | Removes any pending jobs in the AE render queue |
+| 4. Delete existing output | Checks if output file exists → deletes it silently → logs result |
+| 5. Set output path | Adds the comp to queue and sets the output module and path |
+| 6. Render | Executes the render |
+| 7. Save + quit | Saves and closes the application |
+
 ### Render.jsx — Script in Text Editor
 
-![Render.jsx Script](/img/screenshots/figure-018.png)
+![Render.jsx Script](/img/screenshots/figure-031.png)
 
 :::info
 The script uses the output module already configured in the AE project. Ensure the project default render settings are correct before running.

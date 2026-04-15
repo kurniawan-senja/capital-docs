@@ -34,6 +34,14 @@ Complete reference of all visual assets required for this document.
 | 21 | Queue tab | Open sheet, screenshot with render rows | 5.2 |
 | 22 | Logs tab | Open sheet, screenshot event history | 5.3 |
 | 23 | Sample render log .txt | Open in Notepad, full log visible | 8.3 |
+| 24 | Workflow 1 — Success Notification Branch | Zoom into Log FINISHED → Build Success Payload → 4 channels | 2.4.7 |
+| 25 | Workflow 1 — Error Notification Branch | Zoom into Log FAILED → Build Error Payload → 4 channels | 2.4.7 |
+| 26 | Workflow 1 — Error Trigger Area | Zoom into Error Trigger → Build System Error Payload → 4 channels | 2.4.7 |
+| 27 | Workflow 2 — Success Notification Branch | Zoom into Log Render FINISHED → Build Success Payload → 4 channels | 3.4.6 |
+| 28 | Workflow 2 — Error Notification Branch | Zoom into Requeue to READY → Build Error Payload → 4 channels | 3.4.6 |
+| 29 | Workflow 2 — Fatal Notification Branch | Zoom into Log Render FATAL → Build Fatal Payload → 4 channels | 3.4.6 |
+| 30 | Workflow 2 — Error Trigger Area | Zoom into Error Trigger → Build System Error Payload → 4 channels | 3.4.6 |
+| 31 | Render.jsx — Delete Check Block | Open in VS Code, highlight the new delete check section | 4.3 |
 
 ## 9.2 Required Screencasts
 
