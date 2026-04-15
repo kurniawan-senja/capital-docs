@@ -142,10 +142,10 @@ The following notification nodes were added to handle various states of renderin
 - **Build Success Payload** (Set node) — triggered after `Log Render FINISHED`, sends `render_id`, `job_id`, `file_link`, and `duration_sec`.
 - **Build Error Payload** (Set node) — triggered after `Requeue to READY`, sends `render_id`, `retry_count`, and `error_message`.
 - **Build Fatal Payload** (Set node) — triggered after `Log Render FATAL`, sends `render_id`, `job_id`, and reason (`max retry reached`).
-- **Slack, Telegram, Gmail, Discord** — individual routing nodes configured for each payload type (Success, Error, Fatal).
+- **Slack, Telegram, Gmail** — individual routing nodes configured for each payload type (Success, Error, Fatal).
 - **Error Trigger node** — global listener for unexpected application failures.
 - **Build System Error Payload** (Set node) — constructs the exact system crash output.
-- **Slack, Telegram, Gmail, Discord** — individual routing nodes for the System Error payload.
+- **Slack, Telegram, Gmail** — individual routing nodes for the System Error payload.
 
 ### Success Notification Branch
 

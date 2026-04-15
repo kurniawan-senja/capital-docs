@@ -66,7 +66,7 @@ Link: https://streamable.com/9act30
 | **Log FAILED** | Google Sheets | Appends failure event to Logs tab | Confirmation |
 | **End Run** | Set | Terminal node for non-READY rows | No output |
 | **Build Error Payload** | Code | Formats structured message for logical failure alert | JSON payload |
-| **Alert Systems (Slack/TG/Mail/Discord)** | HTTP / Mail | Dispatches failure alerts to multiple channels | HTTP 200 |
+| **Alert Systems (Slack/TG/Mail)** | HTTP / Mail | Dispatches failure alerts to multiple channels | HTTP 200 |
 | **Error Trigger** | Error Trigger | Global listener catching unhandled n8n failures | Exception data |
 | **Build System Error Payload** | Code | Formats structured multi-channel alert for unhandled nodes | JSON payload |
 
@@ -151,11 +151,10 @@ Parses the 12-token composition name into structured JSON fields. Each token is 
 
 When the template file is not found on disk (If Exist? FALSE branch), the workflow routes to Update Failed which sets status = FAILED and records the error step and message. Log FAILED appends the event to the Logs tab.
 
-Once the failure is logged, **Build Error Payload** constructs a formatted message containing `job_id`, `eror_step`, and `eror_message`. This alert is then broadcast to the team across four channels simultaneously:
+Once the failure is logged, **Build Error Payload** constructs a formatted message containing `job_id`, `eror_step`, and `eror_message`. This alert is then broadcast to the team across three channels simultaneously:
 - **Slack** (via Webhook)
 - **Telegram** (via Bot API)
 - **Gmail** (via SMTP routing)
-- **Discord** (via Webhook)
 
 ### Error Path — Update Failed + Log FAILED
 
@@ -167,11 +166,11 @@ The following notification nodes were appended to the end of the existing automa
 
 - **Build Success Payload** (Set node) — triggered after `Log FINISHED`, sends `job_id`, status, and timestamp.
 - **Build Error Payload** (Set node) — triggered after `Log FAILED`, sends `job_id`, `step_failed`, and `error_message`.
-- **Slack, Telegram, Gmail, Discord** — individual nodes routing the Success payload.
-- **Slack, Telegram, Gmail, Discord** — individual nodes routing the Error payload.
+- **Slack, Telegram, Gmail** — individual nodes routing the Success payload.
+- **Slack, Telegram, Gmail** — individual nodes routing the Error payload.
 - **Error Trigger node** — catches global, system-level crashes (unhandled n8n application exceptions) not covered by business logic.
 - **Build System Error Payload** (Set node) — formats the system error message from the Error Trigger.
-- **Slack, Telegram, Gmail, Discord** — individual nodes routing the System Error payload.
+- **Slack, Telegram, Gmail** — individual nodes routing the System Error payload.
 
 ### Success Notification Branch
 
