@@ -1,9 +1,9 @@
 ---
 id: changelog
-title: 10. Changelog
+title: 11. Changelog
 ---
 
-# 10. Changelog
+# 11. Changelog
 
 | Version | Date | Author | Changes |
 | --- | --- | --- | --- |

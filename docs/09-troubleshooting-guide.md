@@ -1,11 +1,11 @@
 ---
 id: troubleshooting-guide
-title: 8. Troubleshooting Guide
+title: 9. Troubleshooting Guide
 ---
 
-# 8. Troubleshooting Guide
+# 9. Troubleshooting Guide
 
-## 8.1 Diagnostic Checklist
+## 9.1 Diagnostic Checklist
 
 When a job fails, follow this sequence before investigating code:
 
@@ -15,7 +15,7 @@ When a job fails, follow this sequence before investigating code:
 4. Are all dependencies available: comp SN, comp PER, CSV files, dropdown controls?
 5. Only then investigate the JSX script or expression code
 
-## 8.2 Common Issues
+## 9.2 Common Issues
 
 | Symptom | Likely Cause | Resolution |
 | --- | --- | --- |
@@ -28,7 +28,7 @@ When a job fails, follow this sequence before investigating code:
 | `file_link` empty after FINISHED | Drive upload failed | Check Drive credentials in n8n, verify folder ID |
 | Export Comp path error | Script in `/test_src/` not `/scripts/` | Verify Execute Export Comp command path matches actual file location |
 
-## 8.3 Log Files
+## 9.3 Log Files
 
 Each JSX script writes a log file to `C:/ae-automated/exports/` on every run. Always check these first.
 

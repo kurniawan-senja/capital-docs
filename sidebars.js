@@ -23,6 +23,7 @@ const sidebars = {
     'google-sheets',
     'naming-convention',
     'technical-constraints',
+    'credential-setup',
     'troubleshooting-guide',
     'screenshot-index',
     'changelog',

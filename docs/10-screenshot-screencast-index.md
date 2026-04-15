@@ -1,13 +1,13 @@
 ---
 id: screenshot-index
-title: 9. Screenshot & Screencast Index
+title: 10. Screenshot & Screencast Index
 ---
 
-# 9. Screenshot & Screencast Index
+# 10. Screenshot & Screencast Index
 
 Complete reference of all visual assets required for this document.
 
-## 9.1 Required Screenshots
+## 10.1 Required Screenshots
 
 | # | Label | Description | Section |
 | --- | --- | --- | --- |
@@ -33,7 +33,7 @@ Complete reference of all visual assets required for this document.
 | 20 | Read_template tab | Sample spreadsheet data | 5.1 |
 | 21 | Queue tab | Sample spreadsheet render rows | 5.2 |
 | 22 | Logs tab | Sample spreadsheet event history | 5.3 |
-| 23 | Sample render log .txt | Sample log output from JSX execution | 8.3 |
+| 23 | Sample render log .txt | Sample log output from JSX execution | 9.3 |
 | 24 | Workflow 1 — Success Notification Branch | Node connections for success notifications | 2.4.7 |
 | 25 | Workflow 1 — Error Notification Branch | Node connections for logical error alerts | 2.4.7 |
 | 26 | Workflow 1 — Error Trigger Area | Node connections for global system errors | 2.4.7 |
@@ -43,7 +43,7 @@ Complete reference of all visual assets required for this document.
 | 30 | Workflow 2 — Error Trigger Area | Node connections for global system errors | 3.4.6 |
 | 31 | Render.jsx — Delete Check Block | Code section preventing overwrite popup | 4.3 |
 
-## 9.2 Required Screencasts
+## 10.2 Required Screencasts
 
 | # | Title | Content | Duration | Section |
 | --- | --- | --- | --- | --- |
