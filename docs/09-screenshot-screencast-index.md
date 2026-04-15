@@ -9,39 +9,39 @@ Complete reference of all visual assets required for this document.
 
 ## 9.1 Required Screenshots
 
-| # | Label | How to Capture | Section |
+| # | Label | Description | Section |
 | --- | --- | --- | --- |
 | 1 | System Architecture Overview | Both workflows side by side | 1.1 |
-| 2 | Workflow 1 Full Canvas | Ctrl+Shift+H in n8n, full zoom-out | 2.2 |
-| 3 | Read Job Queue Settings | Click trigger node, screenshot panel | 2.4.1 |
-| 4 | Normalize Path Code | Click node, screenshot code editor | 2.4.2 |
-| 5 | Execute RW Update Command | Click node, screenshot command field | 2.4.3 |
-| 6 | Filter Only Regulatories Code | Click node, screenshot code | 2.4.4 |
-| 7 | Index Compositions Code | Click node, screenshot parse() function | 2.4.5 |
-| 8 | Error Path — Failed Nodes | Zoom into FALSE branch of If Exist? | 2.4.6 |
-| 9 | Workflow 2 Full Canvas | Ctrl+Shift+H in n8n, full zoom-out | 3.2 |
-| 10 | Parse Job Format Code | Click node, screenshot full code | 3.4.1 |
-| 11 | Run Render Command | Click node, screenshot command field | 3.4.2 |
-| 12 | Retry Logic — 3 nodes | Zoom into If Render OK area | 3.4.3 |
-| 13 | Render Start Timestamp Code | Click node, screenshot code | 3.4.4 |
-| 14 | Upload File Drive Settings | Click node, screenshot folder mapping | 3.4.5 |
-| 15 | Update Job Link Mapping | Click node, screenshot column mapping | 3.4.5 |
-| 16 | Auto_Update_RW.jsx in editor | Open file in VS Code, full view | 4.1 |
-| 17 | Export_Comp.jsx in editor | Open file in VS Code, main loop visible | 4.2 |
-| 18 | `project_data.json` sample | Open in VS Code, first 50 lines | 4.2 |
-| 19 | `Render.jsx` in editor | Open in VS Code, render queue section | 4.3 |
-| 20 | Read_template tab | Open sheet, screenshot with sample data | 5.1 |
-| 21 | Queue tab | Open sheet, screenshot with render rows | 5.2 |
-| 22 | Logs tab | Open sheet, screenshot event history | 5.3 |
-| 23 | Sample render log .txt | Open in Notepad, full log visible | 8.3 |
-| 24 | Workflow 1 — Success Notification Branch | Zoom into Log FINISHED → Build Success Payload → 4 channels | 2.4.7 |
-| 25 | Workflow 1 — Error Notification Branch | Zoom into Log FAILED → Build Error Payload → 4 channels | 2.4.7 |
-| 26 | Workflow 1 — Error Trigger Area | Zoom into Error Trigger → Build System Error Payload → 4 channels | 2.4.7 |
-| 27 | Workflow 2 — Success Notification Branch | Zoom into Log Render FINISHED → Build Success Payload → 4 channels | 3.4.6 |
-| 28 | Workflow 2 — Error Notification Branch | Zoom into Requeue to READY → Build Error Payload → 4 channels | 3.4.6 |
-| 29 | Workflow 2 — Fatal Notification Branch | Zoom into Log Render FATAL → Build Fatal Payload → 4 channels | 3.4.6 |
-| 30 | Workflow 2 — Error Trigger Area | Zoom into Error Trigger → Build System Error Payload → 4 channels | 3.4.6 |
-| 31 | Render.jsx — Delete Check Block | Open in VS Code, highlight the new delete check section | 4.3 |
+| 2 | Workflow 1 Full Canvas | Complete overview of Workflow 1 | 2.2 |
+| 3 | Read Job Queue Settings | Settings panel of the trigger node | 2.4.1 |
+| 4 | Normalize Path Code | Code editor panel for Normalize Path | 2.4.2 |
+| 5 | Execute RW Update Command | Command field settings for AE execution | 2.4.3 |
+| 6 | Filter Only Regulatories Code | Code panel showing the filter logic | 2.4.4 |
+| 7 | Index Compositions Code | Code panel showing the index parser | 2.4.5 |
+| 8 | Error Path — Failed Nodes | FALSE branch logic for missing files | 2.4.6 |
+| 9 | Workflow 2 Full Canvas | Complete overview of Workflow 2 | 3.2 |
+| 10 | Parse Job Format Code | Code panel showing nexrender JSON generation | 3.4.1 |
+| 11 | Run Render Command | Command field settings for Render.jsx | 3.4.2 |
+| 12 | Retry Logic — 3 nodes | Routing logic for render success/failure | 3.4.3 |
+| 13 | Render Start Timestamp Code | Code panel for timestamp tracking | 3.4.4 |
+| 14 | Upload File Drive Settings | Google Drive folder mapping configuration | 3.4.5 |
+| 15 | Update Job Link Mapping | Spreadsheet column mapping configuration | 3.4.5 |
+| 16 | Auto_Update_RW.jsx in editor | Script source code preview | 4.1 |
+| 17 | Export_Comp.jsx in editor | Script source code preview | 4.2 |
+| 18 | `project_data.json` sample | Output format structure preview | 4.2 |
+| 19 | `Render.jsx` in editor | Script source code preview | 4.3 |
+| 20 | Read_template tab | Sample spreadsheet data | 5.1 |
+| 21 | Queue tab | Sample spreadsheet render rows | 5.2 |
+| 22 | Logs tab | Sample spreadsheet event history | 5.3 |
+| 23 | Sample render log .txt | Sample log output from JSX execution | 8.3 |
+| 24 | Workflow 1 — Success Notification Branch | Node connections for success notifications | 2.4.7 |
+| 25 | Workflow 1 — Error Notification Branch | Node connections for logical error alerts | 2.4.7 |
+| 26 | Workflow 1 — Error Trigger Area | Node connections for global system errors | 2.4.7 |
+| 27 | Workflow 2 — Success Notification Branch | Node connections for render success | 3.4.6 |
+| 28 | Workflow 2 — Error Notification Branch | Node connections for retry warnings | 3.4.6 |
+| 29 | Workflow 2 — Fatal Notification Branch | Node connections for fatal render errors | 3.4.6 |
+| 30 | Workflow 2 — Error Trigger Area | Node connections for global system errors | 3.4.6 |
+| 31 | Render.jsx — Delete Check Block | Code section preventing overwrite popup | 4.3 |
 
 ## 9.2 Required Screencasts
 
