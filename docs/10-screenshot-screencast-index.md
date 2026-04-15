@@ -37,11 +37,11 @@ Complete reference of all visual assets required for this document.
 | 24 | Workflow 1 — Success Notification Branch | Node connections for success notifications | 2.4.7 |
 | 25 | Workflow 1 — Error Notification Branch | Node connections for logical error alerts | 2.4.7 |
 | 26 | Workflow 1 — Error Trigger Area | Node connections for global system errors | 2.4.7 |
-| 27 | Workflow 2 — Success Notification Branch | Node connections for render success | 3.4.6 |
-| 28 | Workflow 2 — Error Notification Branch | Node connections for retry warnings | 3.4.6 |
-| 29 | Workflow 2 — Fatal Notification Branch | Node connections for fatal render errors | 3.4.6 |
-| 30 | Workflow 2 — Error Trigger Area | Node connections for global system errors | 3.4.6 |
-| 31 | Render.jsx — Delete Check Block | Code section preventing overwrite popup | 4.3 |
+| 27 | Render.jsx — Delete Check Block | Code section preventing overwrite popup | 4.3 |
+| 28 | Workflow 2 — Success Notification Branch | Node connections for render success | 3.4.6 |
+| 29 | Workflow 2 — Error Notification Branch | Node connections for retry warnings | 3.4.6 |
+| 30 | Workflow 2 — Fatal Notification Branch | Node connections for fatal render errors | 3.4.6 |
+| 31 | Workflow 2 — Error Trigger Area | Node connections for global system errors | 3.4.6 |
 
 ## 10.2 Required Screencasts
 

@@ -98,7 +98,7 @@ A delete check was added before the render starts. If the output file already ex
 
 ### Render.jsx — Script in Text Editor
 
-![Render.jsx Script](/img/screenshots/figure-031.png)
+![Render.jsx Script](/img/screenshots/figure-027.png)
 
 :::info
 The script uses the output module already configured in the AE project. Ensure the project default render settings are correct before running.
