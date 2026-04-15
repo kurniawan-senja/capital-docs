@@ -164,8 +164,8 @@ To prevent confusion when reading logs or notifications, here is the exact disti
 
 ### Fatal Notification Branch
 
-![Fatal Notification Branch](/img/screenshots/figure-027.png)
+![Fatal Notification Branch](/img/screenshots/figure-030.png)
 
 ### Error Trigger Area
 
-![Error Trigger Area](/img/screenshots/figure-030.png)
+![Error Trigger Area](/img/screenshots/figure-031.png)
