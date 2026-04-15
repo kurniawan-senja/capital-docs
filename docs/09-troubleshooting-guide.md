@@ -5,11 +5,11 @@ title: 9. Troubleshooting Guide
 
 # 9. Troubleshooting Guide
 
-:::info Kesalahan vs Gagal Total (Error vs Fatal)
-Pastikan Anda memahami perbedaan peringatan dari n8n ketika melacak kerusakan:
-* **ERROR / Requeue:** Render tunggal gagal. Sistem akan mandiri mengulang (retry) render ini hingga maksimum 3 kali. Anda tidak perlu panik.
-* **FATAL:** Render ini sudah diulang 3x dan tetap gagal! Butuh campur tangan manusia untuk memperbaiki struktur `C:/` atau *file* Ae, kemudian *reset* kolom `retry_count` di Spreadsheet Anda kembali ke 0.
-* **SYSTEM ERROR:** Kesalahan komputasi (bukan After Effects), seringkali internet putus atau Token kedaluwarsa.
+:::info Error vs Fatal (Total Failure)
+Make sure you understand the difference between the n8n notification alerts when tracking down an issue:
+* **ERROR / Requeue:** A single render failed. The system will autonomously retry this render up to a maximum of 3 times. No need to panic.
+* **FATAL:** The render has been retried 3 times and still failed! This requires human intervention to fix the `C:/` directory structure or the Ae project file, followed by manually resetting the `retry_count` column in your Spreadsheet back to 0.
+* **SYSTEM ERROR:** A computational failure outside of After Effects. This is often caused by a disconnected internet connection or an expired API Token.
 :::
 
 ## 9.1 Diagnostic Checklist

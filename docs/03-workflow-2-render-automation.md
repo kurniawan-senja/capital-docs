@@ -147,11 +147,11 @@ The following notification nodes were added to handle various states of renderin
 - **Build System Error Payload** (Set node) — constructs the exact system crash output.
 - **Slack, Telegram, Gmail** — individual routing nodes for the System Error payload.
 
-:::info Terminologi Status: Error vs Fatal
-Untuk mencegah kebingungan saat membaca log atau notifikasi, berikut adalah perbedaan tingkat kegagalan di dalam *workflow*:
-* **ERROR / Requeue (Peringatan):** Render gagal karena After Effects tertutup paksa atau macet. Sistem secara otomatis **mengulang (retry)** pekerjaannya ke status `READY`. Workflow *tidak berhenti*.
-* **FATAL (Gagal Total):** Mode `ERROR` yang sudah mencapai dinding batas maksimal pengulangan (*Max Retry: 3x*). Sistem menyerah mengerjakan komposisi ini dan beralih ke deris/baris berikutnya.
-* **SYSTEM ERROR:** Kerusakan pada level *server/n8n* itu sendiri (misalnya: Google API *timeout*, memori habis, koneksi terputus). Di luar kendali skrip AE.
+:::info Status Terminology: Error vs Fatal
+To prevent confusion when reading logs or notifications, here is the exact distinction between failure states in this workflow:
+* **ERROR / Requeue:** The render failed because After Effects crashed or hung. The system will automatically **retry** the job by queuing it back to the `READY` status. The workflow *does not stop*.
+* **FATAL (Total Failure):** An `ERROR` that has reached the maximum retry limit (*Max Retry: 3x*). The system gives up on this composition and moves on to the next row in the queue.
+* **SYSTEM ERROR:** A failure at the *server/n8n* level itself (e.g., Google API timeout, out of memory, connection severed). This is outside the control of the AE scripts.
 :::
 
 ### Success Notification Branch
