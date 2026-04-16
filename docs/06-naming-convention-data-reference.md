@@ -22,7 +22,7 @@ Example:
 
 Additionally: `OTH` (Other)
 
-## 6.3 Language Codes (Token 7)
+## 6.3 Language Codes (7th Segment)
 
 | Code | Language | Code | Language | Code | Language | Code | Language |
 | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -32,7 +32,7 @@ Additionally: `OTH` (Other)
 | SV | Swedish | CZ | Czech | RU | Russian | GK | Greek |
 | HU | Hungarian | | | | | | |
 
-## 6.4 Regulation Codes (Token 5)
+## 6.4 Regulation Codes (5th Segment)
 
 | Code | Description |
 | --- | --- |
