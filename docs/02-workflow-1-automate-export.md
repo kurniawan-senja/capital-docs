@@ -92,9 +92,22 @@ Polls the Read_template sheet every minute watching the status column. When any 
 Converts Windows backslashes to forward slashes in both `template_path` and `rw_path`, ensuring compatibility across all Execute Command nodes.
 
 ```javascript
-template_path = $('Loop Update').first().json.template_path.replace(/\\/g, '/');
-rw_path = $('Loop Update').first().json.rw_path.replace(/\\/g, '/');
+const template_path = $('Loop Update1').first().json.template_path.replace(/\\/g, "/");
+const rw_path = $('Loop Update1').first().json.rw_path.replace(/\\/g, "/");
+
+return [{
+  json: {
+    ...$json,
+    template_path: template_path,
+    rw_path: rw_path
+  }
+}];
 ```
+
+**Code Explanation:**
+- `$('Loop Update1').first()`: Dynamically fetches the active row item passing through the `Loop Update1` node.
+- `.replace(/\\/g, "/")`: Uses a global Regular Expression (RegEx) to find all Windows backslashes (`\`) from the Google Sheets input and replaces them with standard forward slashes (`/`). This prevents file-path escaping errors when passed into the *Execute Command* nodes.
+- `...$json`: Returns the original input data intact, but overrides the `template_path` and `rw_path` properties with our sanitized string variables.
 
 ### Normalize Path — Code Panel
 
@@ -120,6 +133,26 @@ AfterFX.exe runs synchronously. The Wait node (10 min) after this step provides 
 
 Filters compositions to include only those starting with valid regulatory prefix codes: `CRP, GOL, GAS, OIL, IND, FOX, PGE, COM, EQU, BND, OTH`.
 
+```javascript
+const comps = $json.data.compositions || [];
+
+const business = comps.filter(c =>
+  /^(CRP|GOL|GAS|OIL|IND|FOX|PGE|COM|EQU|BND|OTH)_/.test(c.name)
+);
+
+return [{
+  json: {
+    ...$json,
+    businessComps: business
+  }
+}];
+```
+
+**Code Explanation:**
+- `const comps`: Retrieves the array of compositions parsed from the `project_data.json` file.
+- `comps.filter(...)`: Uses a Regular Expression (`test(c.name)`) to safely keep only compositions whose name starts with one of the approved regulatory prefixes (e.g., CRP, GOL).
+- `...$json`: Returns the payload with the newly created `businessComps` array containing only the matched compositions.
+
 ### Filter Only Regulatories — Code Panel
 
 ![Filter Only Regulatories](/img/screenshots/figure-006.png)
@@ -142,6 +175,46 @@ Parses the 12-token composition name into structured JSON fields. Each token is 
 | 10 | creativeLength | 30sec |
 | 11 | source | CT |
 | 12 | acpm | 0.007 |
+
+```javascript
+function parse(comp) {
+  const tokens = comp.name.split("_");
+
+  if (tokens.length < 12) {
+    throw new Error("Invalid comp naming format: " + comp.name);
+  }
+
+  return {
+      category: tokens[0],
+      campaign: tokens[1],
+      instrument: tokens[2],
+      version: tokens[3],
+      regulation: tokens[4],
+      rw: tokens[5],
+      language: tokens[6],
+      creativeType: tokens[7],
+      creativeSize: tokens[8],
+      creativeLength: tokens[9],
+      source: tokens[10],
+      acpm: tokens[11]
+  };
+}
+
+const indexed = $json.businessComps.map(parse);
+
+return [{
+  json: {
+    indexedComps: indexed
+  }
+}];
+```
+
+**Code Explanation:**
+- `function parse(comp)`: A custom parser function that breaks down a single composition object.
+- `comp.name.split("_")`: Slices the long file name into an array of segments using the underscore character as a delimiter.
+- `if (tokens.length < 12)`: A strict validation check. If a designer missed an underscore, it forcefully throws an Error to halt the workflow and prevent garbage data from entering Google Sheets.
+- `return { category: tokens[0]... }`: Maps each segment by its index to a structured JSON property.
+- `map(parse)`: Loops the parser over every composition inside the `businessComps` array, resulting in a fully structured `indexedComps` payload.
 
 ### Index Compositions — Code Panel
 

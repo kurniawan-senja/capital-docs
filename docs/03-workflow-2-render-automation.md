@@ -74,6 +74,65 @@ Link: https://streamable.com/1wj5fa
 
 Reconstructs the full 12-token composition name from Queue row data and builds the nexrender job object with template source, composition name, output module, and post-render copy action.
 
+```javascript
+const row = $json;
+
+if (row.render !== "READY") {
+  return [];
+}
+
+const rw = String(row.rw);
+const acpm = String(row.ACPM);
+
+const compositionName = [
+  row.category,
+  row.campaign,
+  row.instrument,
+  row.variant,
+  row.regulation,
+  rw,
+  row.language,
+  row.creative_type,
+  row.creative_size,
+  row.creative_length,
+  row.source,
+  acpm
+].join("_");
+
+const nexrenderJob = {
+  template: {
+    id: row.job_id,
+    src: "file:///" + row.template_path.replace(/\\/g, "/"),
+    composition: compositionName,
+    outputModule: "H.264 - Match Render Settings - 15 Mbps",
+    outputExt: "mp4",
+    settingsTemplate: "Best Settings",
+    frameStart: 1
+  },
+  actions: {
+    postrender: [
+      {
+        module: "@nexrender/action-encode",
+        output: `encoded_${row.job_id}_${row.render_id}.mp4`
+      },
+      {
+        module: "@nexrender/action-copy",
+        input: `encoded_${row.job_id}_${row.render_id}.mp4`,
+        output: `C:/ae-automated/renders/out/${row.render_id}_${compositionName}.mp4`
+      }
+    ]
+  }
+};
+
+return [{ json: nexrenderJob }];
+```
+
+**Code Explanation:**
+- `if (row.render !== "READY")`: A safety gate to ensure only jobs properly queued are processed.
+- `const compositionName = [...].join("_")`: Reassembles the 12 distinct data columns from Google Sheets back into the exact original composition name used in After Effects.
+- `const nexrenderJob`: Constructs a JSON schema that dictates the render parameters (like output module and frames).
+- `actions.postrender`: Instructs the system to encode the raw render and securely copy the final `.mp4` into the `renders/out/` directory using the newly reconstructed file name.
+
 ### Parse Job Format — Code Panel
 
 ![Parse Job Format](/img/screenshots/figure-010.png)
@@ -118,6 +177,26 @@ The workflow captures render start and end timestamps. Duration in seconds is ca
 | --- | --- | --- |
 | **Render Start Timestamp** | `render_start` | `YYYY-MM-DD HH:MM:SS UTC` |
 | **Render End Timestamp** | `render_end` + `duration_sec` | Same format + integer seconds |
+
+```javascript
+const renderId = $('Read Queue Data').item.json.render_id;
+const jobId    = $('Read Queue Data').item.json.job_id;
+const startTs = new Date().toISOString().replace('T',' ').slice(0,19) + ' UTC';
+
+return [{
+  json: {
+    ...$json,
+    render_id: renderId,
+    job_id:    jobId,
+    render_start: startTs
+  }
+}];
+```
+
+**Code Explanation:**
+- `renderId` & `jobId`: Fetches and preserves the unique IDs from the Google Sheets row to maintain data synchronization.
+- `const startTs`: Generates the exact current server time in ISO standard format, sanitizes the literal 'T' character to make it human-readable, and appends the 'UTC' timezone.
+- `return [{ ...$json }]`: Passes the data payload to the next node while injecting the new `render_start` property, which will be written to the Google Sheets logging column immediately.
 
 ### Render Start Timestamp — Code Panel
 
