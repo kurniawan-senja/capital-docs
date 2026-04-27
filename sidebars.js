@@ -16,6 +16,7 @@
  */
 const sidebars = {
   docsSidebar: [
+    'client-operator-guide',
     'system-overview',
     'workflow-1',
     'workflow-2',
