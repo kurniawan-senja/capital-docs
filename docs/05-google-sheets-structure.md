@@ -8,6 +8,7 @@ title: 5. Google Sheets Structure
 The Layer Control sheet is the central control plane. All job orchestration, status tracking, render queuing, and logging occurs here.
 
 :::info
+**Live Spreadsheet:** [Capital AE Automation — Layer Control](https://docs.google.com/spreadsheets/d/1BNGKNamOkjNvnR7DyDiqS0G3-qWzVdV6BlyzJ_RrLFk/edit?usp=sharing)  
 **Sheet ID:** 1BNGKNamOkjNvnR7DyDiqS0G3-qWzVdV6BlyzJ_RrLFk
 :::
 
