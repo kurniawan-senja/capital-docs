@@ -16,7 +16,7 @@ This system acts as a direct bridge between your Google Sheet Data Entry and a d
 Before videos can be rendered, the system must read your Master After Effects Template and extract its data into the queue.
 
 ### Step-by-Step Instructions:
-1. Open the **Layer Control Google Sheet**.
+1. Open the **[Layer Control Google Sheet](https://docs.google.com/spreadsheets/d/1BNGKNamOkjNvnR7DyDiqS0G3-qWzVdV6BlyzJ_RrLFk/edit?usp=sharing)**.
 2. Navigate to the **`Read_template`** tab.
 3. In a new or existing row, fill in the **`template_path`**. 
    - **Format Rules:** The path must be a complete Windows directory path starting with the drive letter.
